@@ -50,8 +50,8 @@ st.write("""
 st.write('---')
 
 # Loads the HDB Unique House Price Dataset
-df = pd.read_csv('/Users/luih/code/streamlit/hdb-price-estimator-streamlit/hdb_unique_info.csv')
-df2 = pd.read_parquet('/Users/luih/code/streamlit/hdb-price-estimator-streamlit/final_HDB_for_model.parquet.gzip')
+df = pd.read_csv('hdb_unique_info.csv')
+df2 = pd.read_parquet('final_HDB_for_model.parquet.gzip')
 
 # Sidebar
 # Header of Specify Input Parameters
