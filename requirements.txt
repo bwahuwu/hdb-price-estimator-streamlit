@@ -6,3 +6,4 @@ requests
 streamlit
 streamlit_folium
 scikit-learn
+fastparquet
