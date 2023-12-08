@@ -40,7 +40,7 @@ def get_recent_trans(address, flat_type):
 
 # Start streamlit app:
 
-st.image('/Users/luih/code/streamlit/hdb-price-estimator-streamlit/For Streamlit.jpg', use_column_width=True)
+st.image('For Streamlit.jpg', use_column_width=True)
 
 st.write("""
 # HDB Price Prediction App
