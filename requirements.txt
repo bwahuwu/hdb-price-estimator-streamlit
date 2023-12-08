@@ -1,0 +1,6 @@
+pandas
+sklearn
+folium
+requests
+streamlit
+streamlit_folium
