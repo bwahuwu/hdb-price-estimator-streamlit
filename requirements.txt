@@ -1,5 +1,5 @@
 pandas
-sklearn
+scikit-learn
 folium
 requests
 streamlit
