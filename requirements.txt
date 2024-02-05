@@ -7,3 +7,4 @@ streamlit
 streamlit_folium
 scikit-learn
 fastparquet
+plotly
