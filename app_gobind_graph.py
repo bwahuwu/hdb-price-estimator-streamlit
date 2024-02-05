@@ -170,7 +170,7 @@ if st.session_state['address_submitted']:
                 # Extract historical data from full HDB dataframe for plotting against test results
                 temp = df2[(df2['town'] == town) &
                             (df2['flat_type'] == flat_type) &
-                            (df2['storey_range'] == storey_range)
+                            (df2['lease_commence_date'] == lease_commence_date)
                             ].groupby(['sold_year'])['resale_price'].mean()\
                              .to_frame(name='historical_mean').reset_index()
                 # Include historical mean resale prices in test results dataframe
