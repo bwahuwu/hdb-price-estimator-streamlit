@@ -44,8 +44,8 @@ def get_recent_trans(address, flat_type):
 st.image('For Streamlit.jpg', use_column_width=True)
 
 st.write("""
-### HDB Resale Price Prediction
-###### This application utilizes twenty one different data variables from historical HDB sales data, flat characteristics, walking distances to the nearest MRT station, and macroeconomic indicators to forecast future price trends within Singapore. Select an address to explore!
+## HDB Resale Price Prediction
+##### This application takes in twenty one different data variables from historical HDB sales data, flat characteristics, walking distances to the nearest MRT station, and macroeconomic indicators to forecast future price trends within Singapore. Select an address to explore!
 """)
 st.write('---')
 
@@ -139,6 +139,7 @@ if st.session_state['address_submitted']:
             # closest walking time:
             walking_time_mrt = filtered_df['walking_time_mrt'].mean()
 
+            # fast API url
             url = f'https://hdb-gobind.koyeb.app/predict?year={year}&town={town}&flat_type={flat_type}&storey_range={storey_range}&floor_area_sqm={floor_area}&flat_model={flat_model}&lease_commence_date={lease_commence_date}&sold_remaining_lease={remaining_lease}&max_floor_lvl={max_floor_lvl}&most_closest_mrt={closest_mrt}&walking_time_mrt={walking_time_mrt}'
 
             # Make the GET request
@@ -190,8 +191,10 @@ if st.session_state['address_submitted']:
             fig.update_traces(overwrite=True, selector=dict(name="forecast"), name="AI - DNN Model")
             fig.update_traces(overwrite=True, selector=dict(name="historical_mean"), name="Historical Average Price")
 
-            # To display the plot in Streamlit
+            # display the plot
             st.plotly_chart(fig)
+
+            # draw line
             st.write('---')
 
             # Recent Transactions
@@ -207,13 +210,14 @@ if st.session_state['address_submitted']:
                 st.write("No recent transactions found")
             st.write('---')
 
+            # Show map
             hdb_lat, hdb_lon = get_lat_lon(address)
             st.session_state['closest_mrt'] = get_closest_mrt(address)
             closest_mrt_lat, closest_mrt_lon = get_mrt_lat_lon(address)
             closest_mrt_time = get_mrt_time(address)
 
             m = folium.Map(location=[hdb_lat, hdb_lon], zoom_start=16)
-            # ... add your markers to the map ...
+            # Add your markers to the map
             folium.Marker([hdb_lat, hdb_lon], popup="chosen unit", tooltip="chosen unit", icon=folium.Icon(color='red', prefix='fa',icon='home')).add_to(m)
             folium.Marker([closest_mrt_lat, closest_mrt_lon], popup="MRT", tooltip="MRT", icon=folium.Icon(color='green', prefix='fa',icon='subway')).add_to(m)
             folium.Circle([hdb_lat, hdb_lon], radius=500).add_to(m)
