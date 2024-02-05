@@ -95,9 +95,6 @@ if not st.session_state['submit_button']:
     my_map = folium.Map(location=map_center, zoom_start=11.4)
     st_folium(my_map, width=725, height=484)
 
-
-
-
 # If the address has been submitted, show additional inputs
 if st.session_state['address_submitted']:
     filtered_df = st.session_state['filtered_df']
@@ -111,7 +108,6 @@ if st.session_state['address_submitted']:
 
     if st.session_state['flat_type_submitted']:
         filtered_df = st.session_state['filtered_df']
-
 
         with st.sidebar.form(key='User Input HDB Features'):
             # prediction_year
@@ -128,7 +124,6 @@ if st.session_state['address_submitted']:
             if submit_button and not st.session_state.submit_button:
                 st.session_state.submit_button = True
 
-
         if st.session_state.submit_button:
             filtered_df = st.session_state['filtered_df']
             # town:
@@ -143,28 +138,6 @@ if st.session_state['address_submitted']:
             closest_mrt = filtered_df['MRT'].mode()[0]
             # closest walking time:
             walking_time_mrt = filtered_df['walking_time_mrt'].mean()
-
-
-            # Get prediction
-            # predictions_df[(predictions_df['town'] == town) &
-            #                (predictions_df['flat_type'] == flat_type) &
-            #                (predictions_df['storey_range'] == storey_range) &
-            #                (predictions_df['floor_area_sqm'] == floor_area) &
-            #                (predictions_df['flat_model'] == flat_model) &
-            #                (predictions_df['lease_commence_date'] == lease_commence_date) &
-            #                (predictions_df['max_floor_lvl'] == max_floor_lvl) &
-            #                (predictions_df['most_closest_mrt'] == closest_mrt)
-            #                ]
-
-            # prediction = predictions_df[(predictions_df['town'] == town) &
-            #                (predictions_df['flat_type'] == flat_type) &
-            #                (predictions_df['storey_range'] == storey_range) &
-            #                (predictions_df['floor_area_sqm'] == floor_area) &
-            #                (predictions_df['flat_model'] == flat_model) &
-            #                (predictions_df['lease_commence_date'] == lease_commence_date) &
-            #                (predictions_df['max_floor_lvl'] == max_floor_lvl) &
-            #                (predictions_df['most_closest_mrt'] == closest_mrt)
-            #                ].iloc[0:1]
 
             url = f'https://hdb-gobind.koyeb.app/predict?year={year}&town={town}&flat_type={flat_type}&storey_range={storey_range}&floor_area_sqm={floor_area}&flat_model={flat_model}&lease_commence_date={lease_commence_date}&sold_remaining_lease={remaining_lease}&max_floor_lvl={max_floor_lvl}&most_closest_mrt={closest_mrt}&walking_time_mrt={walking_time_mrt}'
 
@@ -181,8 +154,6 @@ if st.session_state['address_submitted']:
 
             else:
                 prediction = "Error: Could not retrieve prediction"
-
-            # https://hdb-price-estimator-utpkxrm6xa-ew.a.run.app/predict?year=2028&town=HOUGANG&flat_type=3%20ROOM&storey_range=13%20TO%2015%20&floor_area_sqm=95&flat_model=Simplified&lease_commence_date=1980&sold_remaining_lease=93&max_floor_lvl=12&most_closest_mrt=KALLANG&walking_time_mrt=1500
 
             st.header('Prediction')
             st.session_state['prediction'] = st.subheader(f'The predicted price of a {(flat_type).lower()} flat of {floor_area} sqm in {town.title()} is :orange[SGD ${round(prediction/1000)*1000:,}] in {year}')
@@ -216,8 +187,6 @@ if st.session_state['address_submitted']:
             if st.session_state['map']:
                 st.header('Proximity Map')
                 st.write(f'The nearest MRT is: **{st.session_state["closest_mrt"]}**')
-                # st.write(closest_mrt_lat, closest_mrt_lon)
                 st.write(f'Walking time to the nearest MRT is: **{round(closest_mrt_time/60)} mins**')
                 st_data = st_folium(st.session_state['map'], width=725, height=484)
                 st.markdown('''*The circle shows everything within 500m walking distance*''')
-                # st.write(hdb_lat, hdb_lon)
