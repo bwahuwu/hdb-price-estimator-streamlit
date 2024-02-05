@@ -52,7 +52,6 @@ st.write('---')
 # Loads the HDB Unique House Price Dataset
 df = pd.read_csv('hdb_unique_info.csv')
 df2 = pd.read_parquet('final_HDB_for_model.parquet.gzip')
-predictions_df = pd.read_parquet('dnn_HDB_forecast_2024_2033.parquet.gzip')
 
 # Sidebar
 # Header of Specify Input Parameters
@@ -167,7 +166,7 @@ if st.session_state['address_submitted']:
             #                (predictions_df['most_closest_mrt'] == closest_mrt)
             #                ].iloc[0:1]
 
-            url = f'https://hdb-price-estimator-utpkxrm6xa-ew.a.run.app/predict?year={year}&town={town}&flat_type={flat_type}&storey_range={storey_range}&floor_area_sqm={floor_area}&flat_model={flat_model}&lease_commence_date={lease_commence_date}&sold_remaining_lease={remaining_lease}&max_floor_lvl={max_floor_lvl}&most_closest_mrt={closest_mrt}&walking_time_mrt={walking_time_mrt}'
+            url = f'https://hdb-gobind.koyeb.app/predict?year={year}&town={town}&flat_type={flat_type}&storey_range={storey_range}&floor_area_sqm={floor_area}&flat_model={flat_model}&lease_commence_date={lease_commence_date}&sold_remaining_lease={remaining_lease}&max_floor_lvl={max_floor_lvl}&most_closest_mrt={closest_mrt}&walking_time_mrt={walking_time_mrt}'
 
             # Make the GET request
             response = requests.get(url)
