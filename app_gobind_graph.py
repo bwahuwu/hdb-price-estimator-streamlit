@@ -45,7 +45,8 @@ st.image('For Streamlit.jpg', use_column_width=True)
 
 st.write("""
 ## HDB Resale Price Prediction
-##### The AI - deep learning model is trained using twenty one different data variables from historical HDB sales data, flat characteristics, walking distances to the nearest MRT station, and macroeconomic indicators to forecast future HDB resale prices within Singapore. Select an address to explore!
+##### The AI - deep learning model is trained using twenty one different data variables to forecast HDB resale prices in Singapore. Select an address to explore!
+##### To learn more about how the model was built, [click here!](https://medium.com/@hargobind/not-your-average-hdb-resale-price-predictor-a0ea0c1fa6c2)
 """)
 st.write('---')
 
